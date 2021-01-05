@@ -1,5 +1,9 @@
 // require('./deploy/env');
 
+if(process.env.npm_package_config_ENV) {
+  process.env.ENV = process.env.npm_package_config_ENV;
+}
+
 const next = require('next');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -9,7 +13,7 @@ const server = require('http').Server(myapp);
 const auth = require('basic-auth');
 
 
-const port = 3000;
+const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = true;
 
 const app = next({ dev: true });
