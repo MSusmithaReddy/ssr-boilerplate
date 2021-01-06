@@ -48,15 +48,16 @@ onSuccessfulLanding = (data) => () => {
     Router.pushRoute(`/filter${selectedYear ? `?yr=${selectedYear}` : ''}${successLaunch !== null ? `&sla=${successLaunch}`: ''}${(selectedYear !== null || successLaunch !== null) ? '&' : '?'}sld=${data}`);
 }
  render() {
-     const { homePageData } = this.props;
+     const { homePageData, getLoadingStatus } = this.props;
      const { selectedYear, successLaunch, successLanding } = this.state;
+     debugger;
      return (
         <React.Fragment>
          <span>
              <h3>SpaceX Launch Programs</h3>
              <Row className={`${styles.row}`}>
             <Col md={2} sm={2} xs={2} className={`${styles.float} ${styles['background-white']} ${styles['border-radius']}`}>
-                  <div>Flters</div>
+                  <div>Filters</div>
                   <div>
                   <div>
                    <div>Launch Year</div>
@@ -79,7 +80,7 @@ onSuccessfulLanding = (data) => () => {
                    </div>
                  </Col>
                  <Col md={10} className={styles.mainContainer}>
-                    {homePageData && homePageData.length > 0 ? homePageData.map(val => {
+                    {getLoadingStatus ? 'Loading.....' : homePageData && homePageData.length > 0 ? homePageData.map(val => {
                         return (
                             <span className={`${styles['background-white']} ${styles['main-data']}`}>
                            <img src={val.links.mission_patch_small} className={styles['image']} alt="img"/>
@@ -115,6 +116,7 @@ onSuccessfulLanding = (data) => () => {
 }
 const mapStateToProps = store => ({
     homePageData: selectors.getHomePageData(store),
+    getLoadingStatus: selectors.getLoadingStatus(store),
 });
 const mapDispatchToProps = dispatch =>
   bindActionCreators(

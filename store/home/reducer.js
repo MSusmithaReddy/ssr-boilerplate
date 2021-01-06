@@ -18,6 +18,9 @@ const homeReducer = typeToReducer({
           data: {
             ...state.data,
             homePageData: action.payload.data,
+          },
+          ui: {
+            loading: false,
           }
         }
       },

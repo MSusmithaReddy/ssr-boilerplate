@@ -2,4 +2,8 @@ const getHomePageData = store => {
     return store.homeReducer.data.homePageData;
 }
 
-export { getHomePageData };
+const getLoadingStatus = store => {
+    return store.homeReducer.ui.loading;
+}
+
+export { getHomePageData, getLoadingStatus };

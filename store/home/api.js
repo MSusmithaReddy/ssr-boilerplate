@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const getSpaceXData = (data) => {
-    console.log('abcdjhhkjh', data);
     const year = data.yr;
     const successlaunch = data.sla;
     const successLanding = data.sld;
