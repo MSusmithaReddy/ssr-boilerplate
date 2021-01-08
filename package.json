@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node server.js",
-    "build": "next build",
-    "start": "node server.js"
-  },
+    "dev": "node --inspect server.js",
+    "build": "version=$version next build",
+    "start": "NODE_ENV=production ENV=dev node server.js",
+    "start:prod": "NODE_ENV=production ENV=production node server.js"
+ },
   "dependencies": {
     "axios": "^0.18.0",
     "basic-auth": "^2.0.1",
