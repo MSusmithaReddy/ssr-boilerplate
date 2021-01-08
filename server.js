@@ -14,9 +14,9 @@ const auth = require('basic-auth');
 
 
 const port = parseInt(process.env.PORT, 10) || 3000;
-const dev = true;
+const dev = process.env.NODE_ENV !== 'production';
 
-const app = next({ dev: true });
+const app = next({ dev: process.env.NODE_ENV !== 'production' });
 
 // myapp.get('/', function(req, res, next) {
 //   res.sendFile('./deploy/static/coming_soon.html', { root: __dirname });
@@ -29,7 +29,7 @@ const app = next({ dev: true });
 const authHandler = function(request, response, next) {
   var user = auth(request);
 
-  // if (!user || !admins[user.name] || admins[user.name].password !== user.pass) {
+  // if (!user || !admins[user.name++++++++++++++++++++++] || admins[user.name].password !== user.pass) {
   //   response.set('WWW-Authenticate', 'Basic realm="example"');
   //   return response.status(401).send();
   // }
