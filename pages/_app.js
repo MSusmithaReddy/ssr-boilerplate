@@ -2,16 +2,24 @@ import React from 'react'
 import App, { Container } from 'next/app';
 
 class MyApp extends App {
-    static async getInitialProps ({ Component, ctx }) {
-        return {
-            pageProps: Component.getInitialProps
-                ? await Component.getInitialProps(ctx)
-                : {}
+    static async getInitialProps(initArgs) {
+     const { Component, ctx } = initArgs;
+     const { query } = ctx;
+        let pageProps = {}
+        if(Component.getInitialProps) {
+          pageProps = await Component.getInitialProps(ctx)
         }
-    }
+        pageProps = {
+          ...pageProps,
+          url: {
+              query,
+          }
+        }
+        return { pageProps  }
+      }
 
     render () {
-        const { Component, pageProps, store } = this.props;;
+        const { Component, pageProps, store } = this.props;
         return (
             <Container>
                 <Component {...pageProps} />
