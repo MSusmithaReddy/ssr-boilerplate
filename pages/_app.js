@@ -1,5 +1,6 @@
 import React from 'react'
 import App, { Container } from 'next/app';
+import WithLoadingBar from '../lib/hoc';
 
 class MyApp extends App {
     static async getInitialProps(initArgs) {
@@ -11,9 +12,6 @@ class MyApp extends App {
         }
         pageProps = {
           ...pageProps,
-          url: {
-              query,
-          }
         }
         return { pageProps  }
       }
@@ -30,4 +28,4 @@ class MyApp extends App {
 
 // const makeStore = () => store;
 
-export default MyApp;
+export default WithLoadingBar(MyApp);
