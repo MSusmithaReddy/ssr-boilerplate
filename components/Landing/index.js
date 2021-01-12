@@ -75,7 +75,7 @@ onSuccessfulLanding = (data) => () => {
                    <div>
                    <div className={`${styles['filter-heading']}`}>Successful Landing</div>
                    <button className={`${styles.year} ${true === successLanding ? styles['dark-green'] : ''}`} onClick={this.onSuccessfulLanding(true)}>True</button>
-                   <button className={`${styles.year} ${false === successLanding ? styles['dark-green'] : ''}`} onClick={this.onSuccessfulLanding(false)}>false</button>
+                   <button className={`${styles.year} ${false === successLanding ? styles['dark-green'] : ''}`} onClick={this.onSuccessfulLanding(false)}>False</button>
                    </div>
                    </div>
                  </Col>
