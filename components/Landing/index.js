@@ -56,26 +56,26 @@ onSuccessfulLanding = (data) => () => {
          <span>
              <h3>SpaceX Launch Programs</h3>
              <Row className={`${styles.row}`}>
-            <Col md={2} sm={2} xs={2} className={`${styles.float} ${styles['background-white']} ${styles['border-radius']}`}>
-                  <div>Filters</div>
+            <Col md={2} className={`${styles.float} ${styles['background-white']} ${styles['border-radius']}`}>
+                  <div className={`${styles['filters']}`}>Filters</div>
                   <div>
                   <div>
-                   <div>Launch Year</div>
+                   <div className={`${styles['filter-heading']}`}>Launch Year</div>
                    <div className={styles.years}>
                    {years.map(val => {
-                       return <div className={`${styles.year} ${val === selectedYear ? styles['dark-green'] : ''}`} onClick={this.getDataBasedOnYear(val)}>{val}</div>
+                       return <button className={`${styles.year} ${val === selectedYear ? styles['dark-green'] : ''}`} onClick={this.getDataBasedOnYear(val)}>{val}</button>
                    })}
                    </div>
                    </div>
                    <div>
-                   <div>Successful Launch</div>
-                   <span className={`${styles.year} ${true === successLaunch ? styles['dark-green'] : ''}`} onClick={this.onSuccessfulLaunch(true)}>True</span>
-                   <span className={`${styles.year} ${false === successLaunch ? styles['dark-green'] : ''}`} onClick={this.onSuccessfulLaunch(false)}>false</span>
+                   <div className={`${styles['filter-heading']}`}>Successful Launch</div>
+                   <button className={`${styles.year} ${true === successLaunch ? styles['dark-green'] : ''}`} onClick={this.onSuccessfulLaunch(true)}>True</button>
+                   <button className={`${styles.year} ${false === successLaunch ? styles['dark-green'] : ''}`} onClick={this.onSuccessfulLaunch(false)}>False</button>
                    </div>
                    <div>
-                   <div>Successful Landing</div>
-                   <span className={`${styles.year} ${true === successLanding ? styles['dark-green'] : ''}`} onClick={this.onSuccessfulLanding(true)}>True</span>
-                   <span className={`${styles.year} ${false === successLanding ? styles['dark-green'] : ''}`} onClick={this.onSuccessfulLanding(false)}>false</span>
+                   <div className={`${styles['filter-heading']}`}>Successful Landing</div>
+                   <button className={`${styles.year} ${true === successLanding ? styles['dark-green'] : ''}`} onClick={this.onSuccessfulLanding(true)}>True</button>
+                   <button className={`${styles.year} ${false === successLanding ? styles['dark-green'] : ''}`} onClick={this.onSuccessfulLanding(false)}>false</button>
                    </div>
                    </div>
                  </Col>
@@ -86,13 +86,11 @@ onSuccessfulLanding = (data) => () => {
                            <img src={val.links.mission_patch_small} className={styles['image']} alt="img"/>
                            <span className={styles['spaceName']}>{val.rocket.rocket_name}</span>
                            <span>
-                             <span className={styles['subCategories']}>Mission Ids:</span>
-                               <ul>
-                                   <li>{val.mission_id && val.mission_id.length > 0 ? val.mission_id : 'No Id'}</li>
-                               </ul>
+                             <span className={styles['subCategories']}>Mission Ids: </span>
+                                <span>{val.mission_id && val.mission_id.length > 0 ? val.mission_id : 'NA'}</span>
                            </span>
                            <span>
-                             <span className={styles['subCategories']}>Launch Year:</span>
+                             <span className={styles['subCategories']}>Launch Year: </span>
                                <span>{val.launch_year}</span>
                            </span>
                            <span>
