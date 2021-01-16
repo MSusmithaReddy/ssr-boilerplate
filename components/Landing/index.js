@@ -24,28 +24,32 @@ class Landing extends React.Component {
       }
   }
   
-getDataBasedOnYear = (year) => () => {
+getDataBasedOnYear = (value) => () => {
     const { successLaunch, successLanding } = this.state;
-
+    const year = this.state.selectedYear === value ? null : value;
+    debugger;
     this.setState({
         selectedYear: year,
     });
-    Router.pushRoute(`/filter?yr=${year}${successLaunch !== null ? `&sla=${successLaunch}`: ''}${successLanding !== null ? `&sld=${successLanding}`: ''}`);
+    Router.pushRoute(`/filter${year ? `?yr=${year}` : ''}${successLaunch !== null ? `${year ? '&' : '?'}sla=${successLaunch}`: ''}${successLanding !== null ? `${successLaunch || year ? '&' : '?'}sld=${successLanding}`: ''}`);
 }
 
-onSuccessfulLaunch = (data) => () => {
+onSuccessfulLaunch = (value) => () => {
     const { selectedYear, successLanding } = this.state;
+    const data = this.state.successLaunch === String(value) ? null : String(value);
+    debugger;
     this.setState({
         successLaunch: data,
     });
-    Router.pushRoute(`/filter${selectedYear ? `?yr=${selectedYear}` : ''}${selectedYear ? '&' : '?'}sla=${data}${successLanding !== null ? `&sld=${successLanding}`: ''}`);
+    Router.pushRoute(`/filter${selectedYear ? `?yr=${selectedYear}` : ''}${selectedYear ? '&' : '?'}sla=${data ? data : ''}${successLanding !== null ? `&sld=${successLanding}`: ''}`);
 }
-onSuccessfulLanding = (data) => () => {
+onSuccessfulLanding = (value) => () => {
     const { selectedYear, successLaunch } = this.state;
+    const data = this.state.successLanding === String(value) ? null : String(value);
     this.setState({
         successLanding: data,
     });
-    Router.pushRoute(`/filter${selectedYear ? `?yr=${selectedYear}` : ''}${successLaunch !== null ? `&sla=${successLaunch}`: ''}${(selectedYear !== null || successLaunch !== null) ? '&' : '?'}sld=${data}`);
+    Router.pushRoute(`/filter${selectedYear ? `?yr=${selectedYear}` : ''}${successLaunch !== null ? `&sla=${successLaunch}`: ''}${(selectedYear !== null || successLaunch !== null) ? '&' : '?'}sld=${data ? data : ''}`);
 }
  render() {
      const { homePageData, getLoadingStatus } = this.props;
@@ -69,13 +73,13 @@ onSuccessfulLanding = (data) => () => {
                    </div>
                    <div>
                    <div className={`${styles['filter-heading']}`}>Successful Launch</div>
-                   <button className={`${styles.year} ${true === successLaunch ? styles['dark-green'] : ''}`} onClick={this.onSuccessfulLaunch(true)}>True</button>
-                   <button className={`${styles.year} ${false === successLaunch ? styles['dark-green'] : ''}`} onClick={this.onSuccessfulLaunch(false)}>False</button>
+                   <button className={`${styles.year} ${"true" === successLaunch ? styles['dark-green'] : ''}`} onClick={this.onSuccessfulLaunch(true)}>True</button>
+                   <button className={`${styles.year} ${"false" === successLaunch ? styles['dark-green'] : ''}`} onClick={this.onSuccessfulLaunch(false)}>False</button>
                    </div>
                    <div>
                    <div className={`${styles['filter-heading']}`}>Successful Landing</div>
-                   <button className={`${styles.year} ${true === successLanding ? styles['dark-green'] : ''}`} onClick={this.onSuccessfulLanding(true)}>True</button>
-                   <button className={`${styles.year} ${false === successLanding ? styles['dark-green'] : ''}`} onClick={this.onSuccessfulLanding(false)}>False</button>
+                   <button className={`${styles.year} ${"true" === successLanding ? styles['dark-green'] : ''}`} onClick={this.onSuccessfulLanding(true)}>True</button>
+                   <button className={`${styles.year} ${"false" === successLanding ? styles['dark-green'] : ''}`} onClick={this.onSuccessfulLanding(false)}>False</button>
                    </div>
                    </div>
                  </Col>
@@ -99,7 +103,7 @@ onSuccessfulLanding = (data) => () => {
                            </span>
                            <span>
                              <span className={styles['subCategories']}>Successful Landing: </span>
-                               {`${val.launch_landing !== undefined ? val.launch_landing : 'NA'}`}
+                               {`${val.land_success !== undefined ? val.land_success : 'NA'}`}
                            </span>
                            </span>
                         )
