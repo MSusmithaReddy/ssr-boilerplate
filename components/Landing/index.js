@@ -103,7 +103,7 @@ onSuccessfulLanding = (value) => () => {
                            </span>
                            <span>
                              <span className={styles['subCategories']}>Successful Landing: </span>
-                               {`${val.rocket.first_stage.cores[0].land_success ? val.rocket.first_stage.cores[0].land_success : 'NA'}`}
+                               {`${val.rocket.first_stage.cores[0].land_success !== null ? val.rocket.first_stage.cores[0].land_success : 'NA'}`}
                            </span>
                            </span>
                         )
