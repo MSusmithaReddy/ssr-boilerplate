@@ -49,7 +49,7 @@ onSuccessfulLanding = (value) => () => {
     this.setState({
         successLanding: data,
     });
-    Router.pushRoute(`/filter${selectedYear ? `?yr=${selectedYear}` : ''}${successLaunch !== null ? `&sla=${successLaunch}`: ''}${(selectedYear !== null || successLaunch !== null) ? '&' : '?'}sld=${data ? data : ''}`);
+    Router.pushRoute(`/filter${selectedYear ? `?yr=${selectedYear}` : ''}${selectedYear ? '&' : '?'}sla=${successLaunch ? successLaunch : ''}${(selectedYear !== null || successLaunch !== null) ? '&' : '?'}sld=${data ? data : ''}`);
 }
  render() {
      const { homePageData, getLoadingStatus } = this.props;
